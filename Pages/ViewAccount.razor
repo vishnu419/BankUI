@@ -1,0 +1,41 @@
+﻿@page "/viewaccount"
+
+<PageTitle>Accounts</PageTitle>
+
+<h3>View Account</h3>
+
+<p>you can transfer money to any of below accounts using send money option.</p>
+
+@if (Accounts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Account Number</th>
+                <th>IFSC</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var account in Accounts)
+            {
+                <tr>
+                    <td> </td>
+                    <td>@account.AccountNumber</td>
+                    <td>@account.IFSCCode</td>
+                     <td><button @onclick="() => EditAccount(account)">
+                                <i class="fa fa-trash-o fa-lg"></i>
+                            </button></td>
+                    <td><button @onclick="() => DeleteAccount(account)">
+                                <i class="fa fa-trash-o fa-lg"></i>
+                            </button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

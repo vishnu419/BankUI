@@ -1,0 +1,32 @@
+﻿@page "/"
+@using BankUI.Services
+
+
+@code {
+
+    [Inject]
+    private IAuthenticationService? AuthenticationService { get; set; }
+
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (AuthenticationService != null && NavigationManager != null)
+        {
+            var userId = await AuthenticationService.GetUserId();
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                NavigationManager.NavigateTo("login");
+            }
+            else
+            {
+                NavigationManager.NavigateTo("dashboard");
+            }
+        }
+    }
+
+
+}

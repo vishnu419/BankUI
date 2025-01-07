@@ -1,0 +1,31 @@
+﻿@using Blazored.LocalStorage
+@using Microsoft.AspNetCore.Components.Authorization
+@inject NavigationManager NavigationManager
+@inject ILocalStorageService LocalStorage
+@inject CustomAuthenticationStateProvider AuthStateProvider
+
+<CascadingAuthenticationState>
+
+    <AuthorizeView>
+        <Authorized>
+            <button @onclick="Logout" class="btn btn-danger">Logout</button>
+        </Authorized>
+    </AuthorizeView>
+
+</CascadingAuthenticationState>
+
+
+@code {
+    void Login()
+    {
+        NavigationManager.NavigateTo("login");
+    }
+
+    async Task Logout()
+    {
+        await LocalStorage.RemoveItemAsync("JWT_KEY");
+        await AuthStateProvider.GetAuthenticationStateAsync();
+        NavigationManager.NavigateTo("/", true);
+    }
+
+}

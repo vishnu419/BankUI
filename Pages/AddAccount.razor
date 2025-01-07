@@ -1,0 +1,22 @@
+﻿@page "/addaccount"
+
+<h3>Add Account For Money Transfer</h3>
+
+@if (!string.IsNullOrEmpty(Message))
+{
+    <p style="color:red">@Message</p>
+}
+
+<EditForm Model="Model" OnValidSubmit="Submit" FormName="addaccount-form" class="form">
+    <div>
+        <label class="col-form-label" for="accountNumber">Account Number:</label>
+        <InputText class="input-group-text" @bind-Value="Model.AccountNumber" id="accountNumber" name="accountNumber" required />
+    </div>
+    <div>
+        <label class="col-form-label" for="password">IFSC:</label>
+        <InputText class="input-group-text"  @bind-Value="Model.IFSCCode" id="code" name="code" required />
+    </div>
+    <div>
+        <button type="submit" class="btn-primary">Add</button>
+    </div>
+</EditForm>

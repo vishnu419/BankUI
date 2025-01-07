@@ -1,0 +1,24 @@
+﻿@page "/login"
+@inject HttpClient Http
+
+<h3>Login</h3>
+
+@if (!string.IsNullOrEmpty(Message))
+{
+    <p style="color:red">@Message</p>
+}
+
+<EditForm Model="Model" OnValidSubmit="Submit" FormName="login-form" class="form">
+    <div>
+        <label class="col-form-label" for="username">Username:</label>
+        <InputText class="input-group-text" @bind-Value="Model.UserName" id="username" name="username" required />
+    </div>
+    <div>
+        <label class="col-form-label" for="password">Password:</label>
+        <InputText class="input-group-text" type="password" @bind-Value="Model.Password" id="password" name="password" required />
+    </div>
+    <div>
+        <button type="submit" class="btn-primary">Login</button>
+    </div>
+</EditForm>
+

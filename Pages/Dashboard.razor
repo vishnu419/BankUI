@@ -1,0 +1,30 @@
+﻿@page "/dashboard"
+@using Microsoft.AspNetCore.Authorization
+
+<PageTitle>Dashboard</PageTitle>
+
+<h3>Hello @UserName</h3>
+
+<table>
+    <tr>
+        <td> <label class="form-label">Select Account:</label> </td>
+        <td>
+            <select @onchange="OnAccountChanged" value=@SelectedAccountId>
+                @foreach (var account in Accounts)
+                {
+                    <option class="form-select" value="@account.AccountId">@account.AccountNumber</option>
+                }
+            </select>
+        </td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>
+           <label class="form-label">Account Balance:</label> 
+        </td>
+        <td>
+           <p class="col-form-label-lg">@($"${SelectedAccountBalance:F2}")</p> 
+        </td>
+    </tr>
+</table>
+
